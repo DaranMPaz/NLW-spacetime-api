@@ -1,13 +1,16 @@
+import 'dotenv/config'
 import fastify from 'fastify'
-impoer cors from '@fastify/cors'
+import cors from '@fastify/cors'
 import { memoriesRoutes } from './routes/memories'
+import { authRoutes } from './routes/auth'
 
 const app = fastify()
 
 app.register(cors, {
-  origin: true, //todas as URLs de frontend poderão acessar a API
+  origin: true, // todas as URLs de frontend poderão acessar a API
 })
 
+app.register(authRoutes)
 app.register(memoriesRoutes)
 
 app
